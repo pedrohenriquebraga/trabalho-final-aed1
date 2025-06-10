@@ -1,1 +1,1 @@
-int geraListaNumeros(int qtd);
+void geraListaNumeros(int qtd);

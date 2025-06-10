@@ -3,7 +3,10 @@
 #include <stdlib.h>
 #include <time.h>
 
-int geraListaNumeros(int qtd) {
+/// @brief Gera números aleatórios entre 0 e 100 e coloca em um arquivo "numeros.txt"
+/// @param qtd Quantidade de números a serem gerados
+/// @return A função não retorna nada, mas escreve os números no arquivo "numeros.txt"
+void geraListaNumeros(int qtd) {
     FILE *pFile;
     int i, valor;
 
@@ -11,12 +14,12 @@ int geraListaNumeros(int qtd) {
     pFile = fopen("./numeros.txt", "w");
     if (pFile == NULL) {
         perror("Erro ao abrir o arquivo para escrita");
-        return 1;
+        return;
     }
 
     srand(time(NULL));
     for (i = 0; i < qtd; i++) {
-        valor = rand() % 10;
+        valor = rand() % 100;
         fprintf(pFile, "%d\n", valor);
     }
     fclose(pFile);
@@ -24,7 +27,7 @@ int geraListaNumeros(int qtd) {
     pFile = fopen("./numeros.txt", "r");
     if (pFile == NULL) {
         perror("Erro ao abrir o arquivo para leitura");
-        return 1;
+        return;
     }
 
     while (fscanf(pFile, "%d", &valor) == 1) {
@@ -32,5 +35,4 @@ int geraListaNumeros(int qtd) {
     }
 
     fclose(pFile);
-    return 0;
 }

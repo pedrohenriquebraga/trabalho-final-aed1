@@ -5,7 +5,8 @@ typedef struct descritor Lista;
 #define INVALIDO -1
 
 Lista * criaLista();
-int selectionSort(Lista * lista);
+int selectionSortCresc(Lista * lista);
+int selectionSortDecresc(Lista * lista);
 int tamanhoLista(Lista * lista);
 int limpaLista(Lista * lista);
 int verificaLista(Lista * lista);

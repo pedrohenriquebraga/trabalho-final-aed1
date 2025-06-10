@@ -113,7 +113,7 @@ int tamanhoLista(Lista * lista){
    return lista->qtd;
 }
 
-int selectionSort(Lista *lista) {
+int selectionSortCresc(Lista *lista) {
    verificaLista(lista);
 
    if (lista -> qtd < 2) return FALHA;
@@ -144,6 +144,36 @@ int selectionSort(Lista *lista) {
    return SUCESSO;
 }
 
+int selectionSortDecresc(Lista *lista) {
+   verificaLista(lista);
+
+   if (lista -> qtd < 2) return FALHA;
+
+   Elem *i = lista->inicio;
+   
+   while (i != NULL) {
+      Elem *maior = i;
+      Elem *j = i -> prox;
+
+      while (j != NULL) {
+         if (j->dado > maior->dado) {
+            maior = j;
+         }
+         j = j->prox;
+      }
+
+      if (maior != i) {
+         trocaElementos(lista, i, maior);
+         Elem *temp = i;
+         i = maior;
+         maior = temp;
+      }
+
+      i = i->prox;
+   }
+
+   return SUCESSO;
+}
 
 int limpaLista(Lista *lista) {
 

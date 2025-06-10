@@ -5,8 +5,9 @@
 
 int main() {
     Lista *lista = criaLista();
+    Lista *lista2 = criaLista();
 
-    geraListaNumeros(50);
+    geraListaNumeros(5);
 
     FILE *arquivo = fopen("numeros.txt", "r");
 
@@ -18,13 +19,26 @@ int main() {
     int numero;
     while (fscanf(arquivo, "%d", &numero) == 1) {
         insereInicio(lista, numero);
+        insereInicio(lista2, numero);
     }
 
     fclose(arquivo);
 
-    printf("APOS ORDENACAO:\n");
-    selectionSort(lista);
+    printf("LISTA ANTES DA ORDENACAO:\n");
     imprimeLista(lista);
+
+    printf("APOS ORDENACAO CRESCENTE:\n");
+    selectionSortCresc(lista);
+    imprimeLista(lista);
+
+    printf("APOS ORDENACAO DECRESCENTE:\n");
+    selectionSortDecresc(lista2);
+    imprimeLista(lista2);
+
+    printf("APOS ORDENACAO CRESCENTE A PARTIR DA DECRESCENTE:\n");
+    selectionSortDecresc(lista2);
+    imprimeLista(lista2);
+
     limpaLista(lista);
 
     return 0;
