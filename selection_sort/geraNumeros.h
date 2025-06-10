@@ -1,0 +1,1 @@
+int geraListaNumeros(int qtd);

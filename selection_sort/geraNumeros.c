@@ -1,8 +1,9 @@
+#include "geraNumeros.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-int main() {
+int geraListaNumeros(int qtd) {
     FILE *pFile;
     int i, valor;
 
@@ -14,7 +15,7 @@ int main() {
     }
 
     srand(time(NULL));
-    for (i = 0; i < 1000000; i++) {
+    for (i = 0; i < qtd; i++) {
         valor = rand() % 10;
         fprintf(pFile, "%d\n", valor);
     }

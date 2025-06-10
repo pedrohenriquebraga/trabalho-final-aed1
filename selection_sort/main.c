@@ -1,11 +1,15 @@
 #include "lista.h"
+#include "geraNumeros.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 int main() {
     Lista *lista = criaLista();
 
+    geraListaNumeros(50);
+
     FILE *arquivo = fopen("numeros.txt", "r");
+
     if (arquivo == NULL) {
         perror("Erro ao abrir o arquivo");
         return 1;
