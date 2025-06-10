@@ -8,7 +8,7 @@
 /// @return A função não retorna nada, mas escreve os números no arquivo "numeros.txt"
 
 void geraListaNumerosAleatorios(int qtd) {
-    srand(time(NULL));
+    srand(5);
 
     FILE *pFile;
     int i, valor;

@@ -76,8 +76,9 @@ int trocaElementos(Lista *lista, Elem *elem1, Elem *elem2) {
 int selectionSortCresc(Lista *lista) {
     verificaLista(lista);
  
-    if (lista -> qtd < 2) return FALHA;
+    if (lista -> qtd < 2) return INVALIDO;
  
+    int trocasRealizadas = 0;
     Elem *i = lista->inicio;
     
     while (i != NULL) {
@@ -96,12 +97,13 @@ int selectionSortCresc(Lista *lista) {
           Elem *temp = i;
           i = menor;
           menor = temp;
+          trocasRealizadas++;
        }
  
        i = i->prox;
     }
  
-    return SUCESSO;
+    return trocasRealizadas;
  }
  
 int selectionSortDecresc(Lista *lista) {
@@ -109,6 +111,7 @@ int selectionSortDecresc(Lista *lista) {
  
     if (lista -> qtd < 2) return FALHA;
  
+    int trocasRealizadas = 0;
     Elem *i = lista->inicio;
     
     while (i != NULL) {
@@ -127,11 +130,12 @@ int selectionSortDecresc(Lista *lista) {
           Elem *temp = i;
           i = maior;
           maior = temp;
+          trocasRealizadas++;
        }
  
        i = i->prox;
     }
  
-    return SUCESSO;
+    return trocasRealizadas;
  }
  

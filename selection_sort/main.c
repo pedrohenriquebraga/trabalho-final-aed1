@@ -3,12 +3,19 @@
 #include "sort.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main() {
-    Lista *lista = criaLista();
-    Lista *lista2 = criaLista();
+    Lista *lista_sequencial = criaLista();
+    Lista *lista_aleatoria = criaLista();
 
-    geraListaNumerosEmSequencia(1000);
+    int qtdElementos = 25000, numero;
+    clock_t tempoInicio;
+    clock_t tempoFim;
+    double tempoGasto, trocasPorSec;
+    unsigned int qtdTrocas;
+
+    geraListaNumerosEmSequencia(qtdElementos);
 
     FILE *arquivo = fopen("numeros.txt", "r");
 
@@ -17,30 +24,73 @@ int main() {
         return 1;
     }
 
-    int numero;
     while (fscanf(arquivo, "%d", &numero) == 1) {
-        insereInicio(lista, numero);
-        insereInicio(lista2, numero);
+        insereInicio(lista_sequencial, numero);
     }
 
     fclose(arquivo);
 
-    printf("LISTA ANTES DA ORDENACAO:\n");
-    imprimeLista(lista);
+    printf("\nA LISTA TESTADA CONTÉM %d ELEMENTOS INICIALMENTE ORDENADA\n", qtdElementos);
+    
+    printf("==============================================================\n");
+    printf("TESTE ORDENACAO CRESCENTE EM SEQUENCIA:\n");
 
-    printf("APOS ORDENACAO CRESCENTE:\n");
-    selectionSortCresc(lista);
-    imprimeLista(lista);
+    tempoInicio = clock();
 
-    printf("APOS ORDENACAO DECRESCENTE:\n");
-    selectionSortDecresc(lista2);
-    imprimeLista(lista2);
+    qtdTrocas = selectionSortCresc(lista_sequencial);
 
-    printf("APOS ORDENACAO CRESCENTE A PARTIR DA DECRESCENTE:\n");
-    selectionSortCresc(lista2);
-    imprimeLista(lista2);
+    tempoFim = clock();
+    tempoGasto = (double) (tempoFim - tempoInicio) / CLOCKS_PER_SEC;
+    trocasPorSec = qtdTrocas / tempoGasto;
 
-    limpaLista(lista);
+    printf("FORAM REALIZADAS %u TROCAS DE ELEMENTOS\n", qtdTrocas);
+    printf("O TEMPO DE EXECUÇÃO FOI DE %.3lfs PARA ESSA OPERAÇÃO\n", tempoGasto);
+    printf("FORAM REALIZADAS %.2lf TROCAS POR SEGUNDO\n", trocasPorSec);
+    printf("==============================================================\n");
+    printf("TESTE ORDENACAO DECRESCENTE EM SEQUENCIA CRESCENTE:\n");
+
+    tempoInicio = clock();
+
+    qtdTrocas = selectionSortDecresc(lista_sequencial);
+
+    tempoFim = clock();
+    tempoGasto = (double) (tempoFim - tempoInicio) / CLOCKS_PER_SEC;
+    trocasPorSec = qtdTrocas / tempoGasto;
+
+    printf("FORAM REALIZADAS %u TROCAS DE ELEMENTOS\n", qtdTrocas);
+    printf("O TEMPO DE EXECUÇÃO FOI DE %.3lfs PARA ESSA OPERAÇÃO\n", tempoGasto);
+    printf("FORAM REALIZADAS %.2lf TROCAS POR SEGUNDO\n", trocasPorSec);
+
+    printf("==============================================================\n");
+    printf("A LISTA TESTADA CONTÉM %d ELEMENTOS GERADOS ALEATORIAMENTE\n", qtdElementos);
+    printf("==============================================================\n");
+
+    geraListaNumerosAleatorios(qtdElementos);
+    arquivo = fopen("numeros.txt", "r");
+
+    while (fscanf(arquivo, "%d", &numero) == 1) {
+        insereInicio(lista_aleatoria, numero);
+    }
+
+    fclose(arquivo);
+
+    printf("TESTE ORDENACAO CRESCENTE:\n");
+    tempoInicio = clock();
+
+    qtdTrocas = selectionSortDecresc(lista_aleatoria);
+
+    tempoFim = clock();
+    tempoGasto = (double) (tempoFim - tempoInicio) / CLOCKS_PER_SEC;
+    trocasPorSec = qtdTrocas / tempoGasto;
+
+    printf("FORAM REALIZADAS %u TROCAS DE ELEMENTOS\n", qtdTrocas);
+    printf("O TEMPO DE EXECUÇÃO FOI DE %.3lfs PARA ESSA OPERAÇÃO\n", tempoGasto);
+    printf("FORAM REALIZADAS %.2lf TROCAS POR SEGUNDO\n", trocasPorSec);
+
+    printf("==============================================================\n");
+
+    limpaLista(lista_sequencial);
+    limpaLista(lista_aleatoria);
 
     return 0;
 }
