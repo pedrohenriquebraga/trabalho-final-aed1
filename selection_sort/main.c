@@ -7,7 +7,7 @@ int main() {
     Lista *lista = criaLista();
     Lista *lista2 = criaLista();
 
-    geraListaNumeros(5);
+    geraListaNumerosEmSequencia(1000);
 
     FILE *arquivo = fopen("numeros.txt", "r");
 
@@ -36,7 +36,7 @@ int main() {
     imprimeLista(lista2);
 
     printf("APOS ORDENACAO CRESCENTE A PARTIR DA DECRESCENTE:\n");
-    selectionSortDecresc(lista2);
+    selectionSortCresc(lista2);
     imprimeLista(lista2);
 
     limpaLista(lista);

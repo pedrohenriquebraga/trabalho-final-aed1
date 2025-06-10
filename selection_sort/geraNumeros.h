@@ -1,1 +1,2 @@
-void geraListaNumeros(int qtd);
+void geraListaNumerosAleatorios(int qtd);
+void geraListaNumerosEmSequencia(int qtd);
