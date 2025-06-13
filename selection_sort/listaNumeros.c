@@ -29,7 +29,7 @@ int tamanhoListaNum(ListaNumeros * lista){
 
 int limpaListaNum(ListaNumeros *lista) {
 
-   verificaListaNumNum(lista);
+   verificaListaNum(lista);
    
    while (lista -> qtd > 0) {
       removeNumInicio(lista);

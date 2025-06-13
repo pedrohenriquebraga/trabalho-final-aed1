@@ -45,7 +45,7 @@ int insereStrFinal(ListaStrings *lista, char * elem) {
 
    verificaListaStr(lista);
 
-   Elem * novoElem = (Elem *) malloc(sizeof(Elem));
+   ElemStr * novoElem = (ElemStr *) malloc(sizeof(ElemStr));
 
    strcpy(novoElem -> dado, elem);
    novoElem -> ant = NULL;
@@ -59,7 +59,7 @@ int insereStrFinal(ListaStrings *lista, char * elem) {
       lista -> inicio = novoElem;
       lista -> final = novoElem;
    } else {
-      Elem * aux = lista -> final;
+      ElemStr * aux = lista -> final;
       lista -> final = novoElem;
       novoElem -> ant = aux;
       aux -> prox = novoElem;
@@ -70,10 +70,10 @@ int insereStrFinal(ListaStrings *lista, char * elem) {
    return SUCESSO;
 }
 
-int insereInicio(ListaStrings *lista, int elem) {
+int insereStrInicio(ListaStrings *lista, char * elem) {
    verificaListaStr(lista);
 
-   Elem *novoElem = (Elem *) malloc(sizeof(Elem));
+   ElemStr *novoElem = (ElemStr *) malloc(sizeof(ElemStr));
    if (novoElem == NULL) return FALHA;
 
    strcpy(novoElem->dado, elem);
@@ -98,7 +98,7 @@ int removeStrInicio(ListaStrings *lista) {
        return FALHA;
    }
 
-   Elem *aux = lista->inicio;
+   ElemStr *aux = lista->inicio;
 
    if (lista->qtd == 1) {
        lista->inicio = NULL;
@@ -120,7 +120,7 @@ int removeStrFinal(ListaStrings *lista) {
       return FALHA;
    }
 
-   Elem * aux = lista -> final;
+   ElemStr * aux = lista -> final;
 
    if (lista -> inicio == lista -> final) {
       lista -> inicio = NULL;
@@ -143,7 +143,7 @@ int imprimeListaStr(ListaStrings *lista) {
       return FALHA;
    }
 
-   Elem * aux = lista -> inicio;
+   ElemStr * aux = lista -> inicio;
    int i = 0;
    while (aux != NULL) {
       printf("Elem %d: %s\n", i, aux -> dado);

@@ -7,8 +7,8 @@
 #include <time.h>
 
 int main() {
-    ListaStrings *lista_sequencial = criaLista();
-    ListaStrings *lista_aleatoria = criaLista();
+    ListaNumeros *lista_sequencial = criaListaNumeros();
+    ListaNumeros *lista_aleatoria = criaListaNumeros();
 
     int qtdElementos = 1000, numero;
     clock_t tempoInicio;
@@ -26,7 +26,7 @@ int main() {
     }
 
     while (fscanf(arquivo, "%d", &numero) == 1) {
-        insereInicio(lista_sequencial, numero);
+        insereNumInicio(lista_sequencial, numero);
     }
 
     fclose(arquivo);
@@ -70,7 +70,7 @@ int main() {
     arquivo = fopen("numeros.txt", "r");
 
     while (fscanf(arquivo, "%d", &numero) == 1) {
-        insereInicio(lista_aleatoria, numero);
+        insereNumInicio(lista_aleatoria, numero);
     }
 
     fclose(arquivo);
@@ -90,8 +90,8 @@ int main() {
 
     printf("==============================================================\n");
 
-    limpaListaStr(lista_sequencial);
-    limpaListaStr(lista_aleatoria);
+    limpaListaNum(lista_sequencial);
+    limpaListaNum(lista_aleatoria);
 
     return 0;
 }

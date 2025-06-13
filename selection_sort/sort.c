@@ -4,19 +4,19 @@
 #include <stdio.h>
 #include <string.h>
 
-int trocaElementos(ListaStrings *lista, Elem *elem1, Elem *elem2)
-{
-   verificaListaStr(lista);
+
+int trocaElementosNum(ListaNumeros *lista, ElemNum *elem1, ElemNum *elem2) {
+   verificaListaNum(lista);
 
    if (elem1 == NULL || elem2 == NULL || elem1 == elem2)
    {
       return FALHA;
    }
 
-   Elem *ant1 = elem1->ant;
-   Elem *prox1 = elem1->prox;
-   Elem *ant2 = elem2->ant;
-   Elem *prox2 = elem2->prox;
+   ElemNum *ant1 = elem1->ant;
+   ElemNum *prox1 = elem1->prox;
+   ElemNum *ant2 = elem2->ant;
+   ElemNum *prox2 = elem2->prox;
 
    if (prox1 == elem2)
    {
@@ -96,6 +96,98 @@ int trocaElementos(ListaStrings *lista, Elem *elem1, Elem *elem2)
    return SUCESSO;
 }
 
+int trocaElementosStr(ListaStrings *lista, ElemStr *elem1, ElemStr *elem2) {
+   verificaListaStr(lista);
+
+   if (elem1 == NULL || elem2 == NULL || elem1 == elem2)
+   {
+      return FALHA;
+   }
+
+   ElemStr *ant1 = elem1->ant;
+   ElemStr *prox1 = elem1->prox;
+   ElemStr *ant2 = elem2->ant;
+   ElemStr *prox2 = elem2->prox;
+
+   if (prox1 == elem2)
+   {
+      elem1->prox = prox2;
+      elem1->ant = elem2;
+      elem2->prox = elem1;
+      elem2->ant = ant1;
+
+      if (ant1 != NULL)
+      {
+         ant1->prox = elem2;
+      }
+      if (prox2 != NULL)
+      {
+         prox2->ant = elem1;
+      }
+   }
+   else if (prox2 == elem1)
+   {
+      elem2->prox = prox1;
+      elem2->ant = elem1;
+      elem1->prox = elem2;
+      elem1->ant = ant2;
+
+      if (ant2 != NULL)
+      {
+         ant2->prox = elem1;
+      }
+      if (prox1 != NULL)
+      {
+         prox1->ant = elem2;
+      }
+   }
+   else
+   {
+      elem1->prox = prox2;
+      elem1->ant = ant2;
+      elem2->prox = prox1;
+      elem2->ant = ant1;
+
+      if (ant1 != NULL)
+      {
+         ant1->prox = elem2;
+      }
+      if (prox1 != NULL)
+      {
+         prox1->ant = elem2;
+      }
+      if (ant2 != NULL)
+      {
+         ant2->prox = elem1;
+      }
+      if (prox2 != NULL)
+      {
+         prox2->ant = elem1;
+      }
+   }
+
+   if (lista->inicio == elem1)
+   {
+      lista->inicio = elem2;
+   }
+   else if (lista->inicio == elem2)
+   {
+      lista->inicio = elem1;
+   }
+
+   if (lista->final == elem1)
+   {
+      lista->final = elem2;
+   }
+   else if (lista->final == elem2)
+   {
+      lista->final = elem1;
+   }
+
+   return SUCESSO;
+}
+
+
 int comparaPalavras(char * palavra1, char * palavra2) {
    if (palavra1 == palavra2) {
       return INVALIDO;
@@ -108,9 +200,8 @@ int comparaPalavras(char * palavra1, char * palavra2) {
    return 1;
 }
 
-int selectionSortCresc(ListaStrings *lista)
-{
-   verificaListaStr(lista);
+int selectionSortCresc(ListaNumeros *lista) {
+   verificaListaNum(lista);
 
    if (lista->qtd < 2)
       return INVALIDO;
@@ -118,12 +209,12 @@ int selectionSortCresc(ListaStrings *lista)
    int trocasRealizadas = 0;
    long int contIter = 0;
 
-   Elem *i = lista->inicio;
+   ElemNum *i = lista->inicio;
 
    while (i != NULL)
    {
-      Elem *menor = i;
-      Elem *j = i->prox;
+      ElemNum *menor = i;
+      ElemNum *j = i->prox;
 
       while (j != NULL)
       {
@@ -137,8 +228,8 @@ int selectionSortCresc(ListaStrings *lista)
 
       if (menor != i)
       {
-         trocaElementos(lista, i, menor);
-         Elem *temp = i;
+         trocaElementosNum(lista, i, menor);
+         ElemNum *temp = i;
          i = menor;
          menor = temp;
          trocasRealizadas++;
@@ -152,21 +243,21 @@ int selectionSortCresc(ListaStrings *lista)
    return trocasRealizadas;
 }
 
-int selectionSortDecresc(ListaStrings *lista)
+int selectionSortDecresc(ListaNumeros *lista)
 {
-   verificaListaStr(lista);
+   verificaListaNum(lista);
 
    if (lista->qtd < 2)
       return FALHA;
 
    int trocasRealizadas = 0;
    long int contIter = 0;
-   Elem *i = lista->inicio;
+   ElemNum *i = lista->inicio;
 
    while (i != NULL)
    {
-      Elem *maior = i;
-      Elem *j = i->prox;
+      ElemNum *maior = i;
+      ElemNum *j = i->prox;
 
       while (j != NULL)
       {
@@ -180,8 +271,8 @@ int selectionSortDecresc(ListaStrings *lista)
 
       if (maior != i)
       {
-         trocaElementos(lista, i, maior);
-         Elem *temp = i;
+         trocaElementosNum(lista, i, maior);
+         ElemNum *temp = i;
          i = maior;
          maior = temp;
          trocasRealizadas++;
@@ -206,12 +297,12 @@ int selectionSortLexCresc(ListaStrings *lista)
    int trocasRealizadas = 0;
    long int contIter = 0;
 
-   Elem *i = lista->inicio;
+   ElemStr *i = lista->inicio;
 
    while (i != NULL)
    {
-      Elem *menor = i;
-      Elem *j = i->prox;
+      ElemStr *menor = i;
+      ElemStr *j = i->prox;
 
       while (j != NULL) {
          if (comparaPalavras(j -> dado, menor -> dado)) {
@@ -223,8 +314,8 @@ int selectionSortLexCresc(ListaStrings *lista)
 
       if (menor != i)
       {
-         trocaElementos(lista, i, menor);
-         Elem *temp = i;
+         trocaElementosStr(lista, i, menor);
+         ElemStr *temp = i;
          i = menor;
          menor = temp;
          trocasRealizadas++;

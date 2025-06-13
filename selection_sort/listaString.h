@@ -14,7 +14,7 @@ struct descritorStr {
     int qtd;
 };
  
-typedef struct elementoStr Elem;
+typedef struct elementoStr ElemStr;
 typedef struct descritorStr ListaStrings;
 
 #define SUCESSO 0
