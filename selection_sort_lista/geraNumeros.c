@@ -7,7 +7,7 @@
 /// @param qtd Quantidade de números a serem gerados
 /// @return A função não retorna nada, mas escreve os números no arquivo "numeros.txt"
 
-void geraListaNumerosAleatorios(int qtd) {
+void geraListaNumerosAleatorios(unsigned int qtd) {
     srand(5);
 
     FILE *pFile;
@@ -25,9 +25,10 @@ void geraListaNumerosAleatorios(int qtd) {
     }
 
     fclose(pFile);
+    return;
 }
 
-void geraListaNumerosEmSequencia(int qtd) {
+void geraListaNumerosEmSequencia(unsigned int qtd) {
 
     FILE *pFile;
     int i, valor;

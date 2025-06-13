@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "geranumeros.h": "c",
+        "stdio.h": "c",
+        "sortvetor.h": "c"
     }
 }
