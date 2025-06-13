@@ -1,4 +1,5 @@
-#include "lista.h"
+#include "listaNumeros.h"
+#include "listaString.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

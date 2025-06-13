@@ -1,6 +1,7 @@
-#include "lista.h"
+#include "listaString.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 int verificaLista(Lista *lista) {
    if (lista == NULL) {
@@ -24,7 +25,7 @@ Lista *criaListaNumeros() {
 }
 
 int tamanhoLista(Lista * lista){
-   return lista->qtd;
+   return lista -> qtd;
 }
 
 int limpaLista(Lista *lista) {
@@ -40,13 +41,13 @@ int limpaLista(Lista *lista) {
    return SUCESSO;
 }
 
-int insereFinal(Lista *lista, int elem) {
+int insereFinal(Lista *lista, char * elem) {
 
    verificaLista(lista);
 
    Elem * novoElem = (Elem *) malloc(sizeof(Elem));
 
-   novoElem -> dado = elem;
+   strcpy(novoElem -> dado, elem);
    novoElem -> ant = NULL;
    novoElem -> prox = NULL;
    
@@ -75,7 +76,7 @@ int insereInicio(Lista *lista, int elem) {
    Elem *novoElem = (Elem *) malloc(sizeof(Elem));
    if (novoElem == NULL) return FALHA;
 
-   novoElem->dado = elem;
+   strcpy(novoElem->dado, elem);
    novoElem->prox = lista->inicio;
    novoElem->ant = NULL;
 

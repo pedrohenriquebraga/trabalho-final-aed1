@@ -1,6 +1,7 @@
 #ifndef SORT_HEADER
 
-#include "lista.h"
+#include "listaNumeros.h"
+#include "listaString.h"
 
 int selectionSortCresc(Lista * lista);
 int selectionSortDecresc(Lista * lista);

@@ -1,4 +1,5 @@
-#include "lista.h"
+#include "listaString.h"
+#include "listaNumeros.h"
 #include "geraNumeros.h"
 #include "sort.h"
 #include <stdio.h>

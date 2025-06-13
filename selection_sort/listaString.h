@@ -1,8 +1,9 @@
-#ifndef LISTA_HEADER
-#define LISTA_HEADER
+#ifndef LISTA_STRING_HEADER
+#define LISTA_STRING_HEADER
 
+#define TAM_MAX 100
 struct elemento {
-    int dado;
+    char dado[TAM_MAX + 1];
     struct elemento * prox;
     struct elemento * ant;
 };
@@ -24,8 +25,8 @@ Lista * criaListaNumeros();
 int tamanhoLista(Lista * lista);
 int limpaLista(Lista * lista);
 int verificaLista(Lista * lista);
-int insereFinal(Lista * lista, int elem);
-int insereInicio(Lista * lista, int elem);
+int insereFinal(Lista * lista, char * elem);
+int insereInicio(Lista * lista, char * elem);
 int removeFinal(Lista * lista);
 int removeInicio(Lista * lista);
 int imprimeLista(Lista * lista);

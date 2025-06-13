@@ -1,8 +1,8 @@
-#include "lista.h"
+#include "listaNumeros.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-int verificaLista(Lista *lista) {
+int verificaListaNum(ListaNumeros *lista) {
    if (lista == NULL) {
       printf("LISTA NAO ALOCADA\n");
       exit(1);
@@ -11,11 +11,11 @@ int verificaLista(Lista *lista) {
    return SUCESSO;
 }
 
-Lista *criaListaNumeros() {
+ListaNumeros *criaListaNumeros() {
 
-   Lista * lista = (Lista *) malloc(sizeof(Lista));
+   ListaNumeros * lista = (ListaNumeros *) malloc(sizeof(ListaNumeros));
 
-   verificaLista(lista);
+   verificaListaNum(lista);
    lista -> inicio = NULL;
    lista -> final = NULL;
    lista -> qtd = 0;
@@ -23,16 +23,16 @@ Lista *criaListaNumeros() {
    return lista;
 }
 
-int tamanhoLista(Lista * lista){
+int tamanhoListaNum(ListaNumeros * lista){
    return lista->qtd;
 }
 
-int limpaLista(Lista *lista) {
+int limpaListaNum(ListaNumeros *lista) {
 
-   verificaLista(lista);
+   verificaListaNumNum(lista);
    
    while (lista -> qtd > 0) {
-      removeInicio(lista);
+      removeNumInicio(lista);
    }
    
    free(lista);
@@ -40,11 +40,11 @@ int limpaLista(Lista *lista) {
    return SUCESSO;
 }
 
-int insereFinal(Lista *lista, int elem) {
+int insereNumFinal(ListaNumeros *lista, int elem) {
 
-   verificaLista(lista);
+   verificaListaNum(lista);
 
-   Elem * novoElem = (Elem *) malloc(sizeof(Elem));
+   ElemNum * novoElem = (ElemNum *) malloc(sizeof(ElemNum));
 
    novoElem -> dado = elem;
    novoElem -> ant = NULL;
@@ -58,7 +58,7 @@ int insereFinal(Lista *lista, int elem) {
       lista -> inicio = novoElem;
       lista -> final = novoElem;
    } else {
-      Elem * aux = lista -> final;
+      ElemNum * aux = lista -> final;
       lista -> final = novoElem;
       novoElem -> ant = aux;
       aux -> prox = novoElem;
@@ -69,10 +69,10 @@ int insereFinal(Lista *lista, int elem) {
    return SUCESSO;
 }
 
-int insereInicio(Lista *lista, int elem) {
-   verificaLista(lista);
+int insereNumInicio(ListaNumeros *lista, int elem) {
+   verificaListaNum(lista);
 
-   Elem *novoElem = (Elem *) malloc(sizeof(Elem));
+   ElemNum *novoElem = (ElemNum *) malloc(sizeof(ElemNum));
    if (novoElem == NULL) return FALHA;
 
    novoElem->dado = elem;
@@ -91,13 +91,13 @@ int insereInicio(Lista *lista, int elem) {
    return SUCESSO;
 }
 
-int removeInicio(Lista *lista) {
-   verificaLista(lista);
+int removeNumInicio(ListaNumeros *lista) {
+   verificaListaNum(lista);
    if (lista->qtd == 0) {
        return FALHA;
    }
 
-   Elem *aux = lista->inicio;
+   ElemNum *aux = lista->inicio;
 
    if (lista->qtd == 1) {
        lista->inicio = NULL;
@@ -113,13 +113,13 @@ int removeInicio(Lista *lista) {
    return SUCESSO;
 }
 
-int removeFinal(Lista *lista) {
-   verificaLista(lista);
+int removeNumFinal(ListaNumeros *lista) {
+   verificaListaNum(lista);
    if (lista -> qtd == 0) {
       return FALHA;
    }
 
-   Elem * aux = lista -> final;
+   ElemNum * aux = lista -> final;
 
    if (lista -> inicio == lista -> final) {
       lista -> inicio = NULL;
@@ -134,15 +134,15 @@ int removeFinal(Lista *lista) {
    return SUCESSO;
 }
 
-int imprimeLista(Lista *lista) {
-   verificaLista(lista);
+int imprimeListaNum(ListaNumeros *lista) {
+   verificaListaNum(lista);
 
    if (lista -> qtd == 0) {
       printf("A LISTA ESTA VAZIA\n");
       return FALHA;
    }
 
-   Elem * aux = lista -> inicio;
+   ElemNum * aux = lista -> inicio;
    int i = 0;
    while (aux != NULL) {
       printf("Elem %d: %d\n", i, aux -> dado);
