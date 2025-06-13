@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int verificaLista(Lista *lista) {
+int verificaListaStr(ListaStrings *lista) {
    if (lista == NULL) {
       printf("LISTA NAO ALOCADA\n");
       exit(1);
@@ -12,11 +12,11 @@ int verificaLista(Lista *lista) {
    return SUCESSO;
 }
 
-Lista *criaListaNumeros() {
+ListaStrings *criaListaStrings() {
 
-   Lista * lista = (Lista *) malloc(sizeof(Lista));
+   ListaStrings * lista = (ListaStrings *) malloc(sizeof(ListaStrings));
 
-   verificaLista(lista);
+   verificaListaStr(lista);
    lista -> inicio = NULL;
    lista -> final = NULL;
    lista -> qtd = 0;
@@ -24,16 +24,16 @@ Lista *criaListaNumeros() {
    return lista;
 }
 
-int tamanhoLista(Lista * lista){
+int tamanhoListaStr(ListaStrings * lista){
    return lista -> qtd;
 }
 
-int limpaLista(Lista *lista) {
+int limpaListaStr(ListaStrings *lista) {
 
-   verificaLista(lista);
+   verificaListaStr(lista);
    
    while (lista -> qtd > 0) {
-      removeInicio(lista);
+      removeStrInicio(lista);
    }
    
    free(lista);
@@ -41,9 +41,9 @@ int limpaLista(Lista *lista) {
    return SUCESSO;
 }
 
-int insereFinal(Lista *lista, char * elem) {
+int insereStrFinal(ListaStrings *lista, char * elem) {
 
-   verificaLista(lista);
+   verificaListaStr(lista);
 
    Elem * novoElem = (Elem *) malloc(sizeof(Elem));
 
@@ -70,8 +70,8 @@ int insereFinal(Lista *lista, char * elem) {
    return SUCESSO;
 }
 
-int insereInicio(Lista *lista, int elem) {
-   verificaLista(lista);
+int insereInicio(ListaStrings *lista, int elem) {
+   verificaListaStr(lista);
 
    Elem *novoElem = (Elem *) malloc(sizeof(Elem));
    if (novoElem == NULL) return FALHA;
@@ -92,8 +92,8 @@ int insereInicio(Lista *lista, int elem) {
    return SUCESSO;
 }
 
-int removeInicio(Lista *lista) {
-   verificaLista(lista);
+int removeStrInicio(ListaStrings *lista) {
+   verificaListaStr(lista);
    if (lista->qtd == 0) {
        return FALHA;
    }
@@ -114,8 +114,8 @@ int removeInicio(Lista *lista) {
    return SUCESSO;
 }
 
-int removeFinal(Lista *lista) {
-   verificaLista(lista);
+int removeStrFinal(ListaStrings *lista) {
+   verificaListaStr(lista);
    if (lista -> qtd == 0) {
       return FALHA;
    }
@@ -135,8 +135,8 @@ int removeFinal(Lista *lista) {
    return SUCESSO;
 }
 
-int imprimeLista(Lista *lista) {
-   verificaLista(lista);
+int imprimeListaStr(ListaStrings *lista) {
+   verificaListaStr(lista);
 
    if (lista -> qtd == 0) {
       printf("A LISTA ESTA VAZIA\n");
@@ -146,7 +146,7 @@ int imprimeLista(Lista *lista) {
    Elem * aux = lista -> inicio;
    int i = 0;
    while (aux != NULL) {
-      printf("Elem %d: %d\n", i, aux -> dado);
+      printf("Elem %d: %s\n", i, aux -> dado);
       i++;
       aux = aux -> prox;
    }

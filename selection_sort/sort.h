@@ -3,7 +3,7 @@
 #include "listaNumeros.h"
 #include "listaString.h"
 
-int selectionSortCresc(Lista * lista);
-int selectionSortDecresc(Lista * lista);
+int selectionSortCresc(ListaStrings * lista);
+int selectionSortDecresc(ListaStrings * lista);
 
 #endif // !SORT_HEADER

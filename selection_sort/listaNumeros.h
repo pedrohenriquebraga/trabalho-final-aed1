@@ -7,14 +7,14 @@ struct elementoNum {
     struct elementoNum * ant;
 };
  
-struct descritor {
+struct descritorNum {
     struct elementoNum * inicio;
     struct elementoNum * final;
     int qtd;
 };
  
 typedef struct elementoNum ElemNum;
-typedef struct descritor ListaNumeros;
+typedef struct descritorNum ListaNumeros;
 
 #define SUCESSO 0
 #define FALHA 1

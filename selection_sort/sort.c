@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <string.h>
 
-int trocaElementos(Lista *lista, Elem *elem1, Elem *elem2)
+int trocaElementos(ListaStrings *lista, Elem *elem1, Elem *elem2)
 {
-   verificaLista(lista);
+   verificaListaStr(lista);
 
    if (elem1 == NULL || elem2 == NULL || elem1 == elem2)
    {
@@ -108,9 +108,9 @@ int comparaPalavras(char * palavra1, char * palavra2) {
    return 1;
 }
 
-int selectionSortCresc(Lista *lista)
+int selectionSortCresc(ListaStrings *lista)
 {
-   verificaLista(lista);
+   verificaListaStr(lista);
 
    if (lista->qtd < 2)
       return INVALIDO;
@@ -152,9 +152,9 @@ int selectionSortCresc(Lista *lista)
    return trocasRealizadas;
 }
 
-int selectionSortDecresc(Lista *lista)
+int selectionSortDecresc(ListaStrings *lista)
 {
-   verificaLista(lista);
+   verificaListaStr(lista);
 
    if (lista->qtd < 2)
       return FALHA;
@@ -196,9 +196,9 @@ int selectionSortDecresc(Lista *lista)
    return trocasRealizadas;
 }
 
-int selectionSortLexCresc(Lista *lista)
+int selectionSortLexCresc(ListaStrings *lista)
 {
-   verificaLista(lista);
+   verificaListaStr(lista);
 
    if (lista->qtd < 2)
       return INVALIDO;

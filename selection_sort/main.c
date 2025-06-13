@@ -7,8 +7,8 @@
 #include <time.h>
 
 int main() {
-    Lista *lista_sequencial = criaLista();
-    Lista *lista_aleatoria = criaLista();
+    ListaStrings *lista_sequencial = criaLista();
+    ListaStrings *lista_aleatoria = criaLista();
 
     int qtdElementos = 1000, numero;
     clock_t tempoInicio;
@@ -90,8 +90,8 @@ int main() {
 
     printf("==============================================================\n");
 
-    limpaLista(lista_sequencial);
-    limpaLista(lista_aleatoria);
+    limpaListaStr(lista_sequencial);
+    limpaListaStr(lista_aleatoria);
 
     return 0;
 }

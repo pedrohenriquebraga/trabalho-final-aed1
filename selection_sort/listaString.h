@@ -2,33 +2,33 @@
 #define LISTA_STRING_HEADER
 
 #define TAM_MAX 100
-struct elemento {
+struct elementoStr {
     char dado[TAM_MAX + 1];
-    struct elemento * prox;
-    struct elemento * ant;
+    struct elementoStr * prox;
+    struct elementoStr * ant;
 };
  
-struct descritor {
-    struct elemento * inicio;
-    struct elemento * final;
+struct descritorStr {
+    struct elementoStr * inicio;
+    struct elementoStr * final;
     int qtd;
 };
  
-typedef struct elemento Elem;
-typedef struct descritor Lista;
+typedef struct elementoStr Elem;
+typedef struct descritorStr ListaStrings;
 
 #define SUCESSO 0
 #define FALHA 1
 #define INVALIDO -1
 
-Lista * criaListaNumeros();
-int tamanhoLista(Lista * lista);
-int limpaLista(Lista * lista);
-int verificaLista(Lista * lista);
-int insereFinal(Lista * lista, char * elem);
-int insereInicio(Lista * lista, char * elem);
-int removeFinal(Lista * lista);
-int removeInicio(Lista * lista);
-int imprimeLista(Lista * lista);
+ListaStrings * criaListaStrings();
+int tamanhoListaStr(ListaStrings * lista);
+int limpaListaStr(ListaStrings * lista);
+int verificaListaStr(ListaStrings * lista);
+int insereStrFinal(ListaStrings * lista, char * elem);
+int insereStrInicio(ListaStrings * lista, char * elem);
+int removeStrFinal(ListaStrings * lista);
+int removeStrInicio(ListaStrings * lista);
+int imprimeListaStr(ListaStrings * lista);
 
 #endif
