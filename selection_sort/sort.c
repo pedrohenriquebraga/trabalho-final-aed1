@@ -187,17 +187,24 @@ int trocaElementosStr(ListaStrings *lista, ElemStr *elem1, ElemStr *elem2) {
    return SUCESSO;
 }
 
-
 int comparaPalavras(char * palavra1, char * palavra2) {
    if (palavra1 == palavra2) {
       return INVALIDO;
    }
 
-   if (strcmp(palavra1, palavra2) > 0) {
+   int tamanho1 = strlen(palavra1);
+   int tamanho2 = strlen(palavra2);
+   size_t menor = (size_t) (tamanho1 < tamanho2) ? tamanho1 : tamanho2;
+   int comparacaoParcial = strncmp(palavra1, palavra2, menor);
+
+   if (comparacaoParcial < 0) {
+      return 1;
+   } else if (comparacaoParcial > 0) {
       return 0;
+   } else {
+      return strcmp(palavra1, palavra2) < 0;
    }
 
-   return 1;
 }
 
 int selectionSortCresc(ListaNumeros *lista) {
@@ -318,6 +325,48 @@ int selectionSortLexCresc(ListaStrings *lista)
          ElemStr *temp = i;
          i = menor;
          menor = temp;
+         trocasRealizadas++;
+      }
+
+      i = i->prox;
+      contIter++;
+   }
+
+   printf("A LISTA FOI PERCORRIDA %ld VEZES\n", contIter);
+   return trocasRealizadas;
+}
+
+int selectionSortLexDecresc(ListaStrings *lista)
+{
+   verificaListaStr(lista);
+
+   if (lista->qtd < 2)
+      return INVALIDO;
+
+   int trocasRealizadas = 0;
+   long int contIter = 0;
+
+   ElemStr *i = lista->inicio;
+
+   while (i != NULL)
+   {
+      ElemStr *maior = i;
+      ElemStr *j = i->prox;
+
+      while (j != NULL) {
+         if (comparaPalavras(j -> dado, maior -> dado)== 0) {
+            maior = j;
+         }
+         j = j->prox;
+         contIter++;
+      }
+
+      if (maior != i)
+      {
+         trocaElementosStr(lista, i, maior);
+         ElemStr *temp = i;
+         i = maior;
+         maior = temp;
          trocasRealizadas++;
       }
 
