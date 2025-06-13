@@ -9,7 +9,7 @@ int main() {
     Lista *lista_sequencial = criaLista();
     Lista *lista_aleatoria = criaLista();
 
-    int qtdElementos = 25000, numero;
+    int qtdElementos = 1000, numero;
     clock_t tempoInicio;
     clock_t tempoFim;
     double tempoGasto, trocasPorSec;

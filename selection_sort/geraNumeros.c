@@ -20,7 +20,7 @@ void geraListaNumerosAleatorios(int qtd) {
     }
 
     for (i = 0; i < qtd; i++) {
-        valor = rand() % 100;
+        valor = (rand() % 200) - 100;
         fprintf(pFile, "%d\n", valor);
     }
 

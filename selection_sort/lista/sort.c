@@ -1,5 +1,6 @@
 #include "lista.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int trocaElementos(Lista *lista, Elem *elem1, Elem *elem2) {
     verificaLista(lista);
@@ -79,6 +80,8 @@ int selectionSortCresc(Lista *lista) {
     if (lista -> qtd < 2) return INVALIDO;
  
     int trocasRealizadas = 0;
+    long int contIter = 0;
+
     Elem *i = lista->inicio;
     
     while (i != NULL) {
@@ -90,6 +93,7 @@ int selectionSortCresc(Lista *lista) {
              menor = j;
           }
           j = j->prox;
+          contIter++;
        }
  
        if (menor != i) {
@@ -101,8 +105,10 @@ int selectionSortCresc(Lista *lista) {
        }
  
        i = i->prox;
+       contIter++;
     }
  
+    printf("A LISTA FOI PERCORRIDA %ld VEZES\n", contIter);
     return trocasRealizadas;
  }
  
@@ -112,6 +118,7 @@ int selectionSortDecresc(Lista *lista) {
     if (lista -> qtd < 2) return FALHA;
  
     int trocasRealizadas = 0;
+    long int contIter = 0;
     Elem *i = lista->inicio;
     
     while (i != NULL) {
@@ -123,6 +130,7 @@ int selectionSortDecresc(Lista *lista) {
              maior = j;
           }
           j = j->prox;
+          contIter++;
        }
  
        if (maior != i) {
@@ -134,8 +142,11 @@ int selectionSortDecresc(Lista *lista) {
        }
  
        i = i->prox;
+       contIter++;
     }
  
+    printf("A LISTA FOI PERCORRIDA %ld VEZES\n", contIter);
+
     return trocasRealizadas;
  }
  
