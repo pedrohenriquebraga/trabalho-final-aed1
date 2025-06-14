@@ -5,8 +5,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <locale.h>
 
 int main() {
+    setlocale(LC_ALL, "pt_BR.UTF-8");
     ListaNumeros *lista_sequencial = criaListaNumeros();
     ListaNumeros *lista_aleatoria = criaListaNumeros();
 
@@ -37,7 +39,7 @@ int main() {
         insereStrInicio(lista_nomes, nome);
     }
 
-    selectionSortLexDecresc(lista_nomes);
+    selectionSortLexCresc(lista_nomes);
     imprimeListaStr(lista_nomes);
 
     // geraListaNumerosEmSequencia(qtdElementos);

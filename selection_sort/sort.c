@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
+#include <ctype.h>
 
 int trocaElementosNum(ListaNumeros *lista, ElemNum *elem1, ElemNum *elem2) {
    verificaListaNum(lista);
@@ -192,17 +192,24 @@ int comparaPalavras(char * palavra1, char * palavra2) {
       return INVALIDO;
    }
 
+   char tempP1[TAM_MAX + 1], tempP2[TAM_MAX + 1];
+
    int tamanho1 = strlen(palavra1);
    int tamanho2 = strlen(palavra2);
-   size_t menor = (size_t) (tamanho1 < tamanho2) ? tamanho1 : tamanho2;
-   int comparacaoParcial = strncmp(palavra1, palavra2, menor);
+
+   size_t menor = (size_t) (tamanho1 <= tamanho2) ? tamanho1 : tamanho2;
+
+   strncpy(tempP1, palavra1, menor);
+   strncpy(tempP2, palavra2, menor);
+
+   int comparacaoParcial = strcoll(tempP1, tempP2);
 
    if (comparacaoParcial < 0) {
       return 1;
    } else if (comparacaoParcial > 0) {
       return 0;
    } else {
-      return strcmp(palavra1, palavra2) < 0;
+      return strcoll(palavra1, palavra2) < 0;
    }
 
 }
