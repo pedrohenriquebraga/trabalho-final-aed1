@@ -187,31 +187,30 @@ int trocaElementosStr(ListaStrings *lista, ElemStr *elem1, ElemStr *elem2) {
    return SUCESSO;
 }
 
-int comparaPalavras(char * palavra1, char * palavra2) {
+int comparaPalavras(char *palavra1, char *palavra2) {
+   if (palavra1 == NULL || palavra2 == NULL) {
+       return INVALIDO;
+   }
    if (palavra1 == palavra2) {
-      return INVALIDO;
+       return 0;
    }
 
-   char tempP1[TAM_MAX + 1], tempP2[TAM_MAX + 1];
+   int comparacao = strcoll(palavra1, palavra2);
 
-   int tamanho1 = strlen(palavra1);
-   int tamanho2 = strlen(palavra2);
-
-   size_t menor = (size_t) (tamanho1 <= tamanho2) ? tamanho1 : tamanho2;
-
-   strncpy(tempP1, palavra1, menor);
-   strncpy(tempP2, palavra2, menor);
-
-   int comparacaoParcial = strcoll(tempP1, tempP2);
-
-   if (comparacaoParcial < 0) {
-      return 1;
-   } else if (comparacaoParcial > 0) {
-      return 0;
+   if (comparacao < 0) {
+       return 1;
+   } else if (comparacao > 0) {
+       return 0;
    } else {
-      return strcoll(palavra1, palavra2) < 0;
-   }
+       int tamanho1 = strlen(palavra1);
+       int tamanho2 = strlen(palavra2);
 
+       if (tamanho1 < tamanho2) {
+         return 1;
+       } 
+
+       return 0;
+   }
 }
 
 int selectionSortCresc(ListaNumeros *lista) {
