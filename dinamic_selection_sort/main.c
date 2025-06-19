@@ -11,6 +11,10 @@
 int main() {
     system("clear");
     setlocale(LC_ALL, "pt_BR.UTF-8");
+
+    // Ativa e desativa a exibição das listas
+    bool printListas = false;
+
     ListaNumeros *lista_sequencial = criaListaNumeros();
     ListaNumeros *lista_aleatoria = criaListaNumeros();
     ListaStrings *lista_nomes = criaListaStrings();
@@ -24,7 +28,8 @@ int main() {
     FILE *arquivoNomes = fopen("nomes.txt", "r");
     FILE *arquivoNums = fopen("numeros.txt", "r");
 
-    bool printListas = true;
+    printf("==============================================================");
+    printf("\n\n                       SELECTION SORT\n\n");
 
     if (arquivoNums == NULL) {
         perror("Erro ao abrir o arquivo de numeros");
@@ -36,11 +41,10 @@ int main() {
         return 1;
     }
 
-
     int contNomes = 0;
 
     // Defina um valor entre 0 e 10 milhões para nomes, e ilimitado para numeros
-    int limiteNomes = 10, qtdNumeros = 10;
+    int limiteNomes = 25000, qtdNumeros = 35000;
 
     while (fscanf(arquivoNomes, "%[^\n]%*c", nome) == 1) {
         contNomes++;
@@ -63,14 +67,14 @@ int main() {
     printf("A LISTA TESTADA CONTEM %d ELEMENTOS INICIALMENTE ORDENADA\n", qtdNumeros);
     printf("==============================================================\n");
     printf("TESTE ORDENACAO CRESCENTE EM SEQUENCIA:\n");
-    printf("==============================================================\n");
+    printf("==============================================================\n\n");
 
 
     if (printListas) {
         printf("LISTA ANTES DA ORDENACAO: \n");
         imprimeListaNum(lista_sequencial);
+        printf("==============================================================\n");
     }
-    printf("==============================================================\n");
 
     tempoInicio = clock();
 
@@ -90,22 +94,20 @@ int main() {
         imprimeListaNum(lista_sequencial);
     }
 
-    printf("==============================================================\n");
+    printf("\n==============================================================\n");
     printf("TESTE ORDENACAO DECRESCENTE EM SEQUENCIA CRESCENTE:\n");
-    printf("==============================================================\n");
+    printf("==============================================================\n\n");
 
     
     if (printListas) {
         printf("LISTA ANTES DA ORDENACAO: \n");
         imprimeListaNum(lista_sequencial);
+        printf("==============================================================\n");
     }
-    printf("==============================================================\n");
-
 
     tempoInicio = clock();
 
     qtdTrocas = selectionSortDecresc(lista_sequencial);
-
 
     tempoFim = clock();
     tempoGasto = (double) (tempoFim - tempoInicio) / CLOCKS_PER_SEC;
@@ -120,7 +122,7 @@ int main() {
         imprimeListaNum(lista_sequencial);
     }
 
-    printf("==============================================================\n");
+    printf("\n==============================================================\n");
     printf("A LISTA TESTADA CONTEM %d ELEMENTOS GERADOS ALEATORIAMENTE\n", qtdNumeros);
     printf("==============================================================\n");
 
@@ -134,14 +136,14 @@ int main() {
     fclose(arquivoNums);
 
     printf("TESTE ORDENACAO CRESCENTE:\n");
-    printf("==============================================================\n");
+    printf("==============================================================\n\n");
 
     
     if (printListas) {
         printf("LISTA ANTES DA ORDENACAO: \n");
         imprimeListaNum(lista_aleatoria);
+        printf("==============================================================\n");
     }
-    printf("==============================================================\n");
 
     tempoInicio = clock();
 
@@ -160,16 +162,16 @@ int main() {
         imprimeListaNum(lista_aleatoria);
     }
 
-    printf("==============================================================\n");
+    printf("\n==============================================================\n");
     printf("A LISTA TESTADA CONTEM %d NOMES NAO ORDENADOS\n", contNomes);
-    printf("==============================================================\n");
+    printf("==============================================================\n\n");
     
     if (printListas) {
         printf("LISTA ANTES DA ORDENACAO: \n");
         imprimeListaStr(lista_nomes);
+        printf("==============================================================\n");
     }
 
-    printf("==============================================================\n");
 
     tempoInicio = clock();
 
@@ -187,7 +189,7 @@ int main() {
         printf("LISTA APOS ORDENACAO: \n");
         imprimeListaStr(lista_nomes);
     }
-    printf("==============================================================\n");
+    printf("\n==============================================================\n");
 
     limpaListaNum(lista_sequencial);
     limpaListaNum(lista_aleatoria);
