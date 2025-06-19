@@ -44,7 +44,7 @@ int main() {
     int contNomes = 0;
 
     // Defina um valor entre 0 e 10 milhões para nomes, e ilimitado para numeros
-    int limiteNomes = 25000, qtdNumeros = 35000;
+    int limiteNomes = 25000, qtdNumeros = 500000;
 
     while (fscanf(arquivoNomes, "%[^\n]%*c", nome) == 1) {
         contNomes++;
