@@ -8,88 +8,72 @@
 int trocaElementosNum(ListaNumeros *lista, ElemNum *elem1, ElemNum *elem2) {
    verificaListaNum(lista);
 
-   if (elem1 == NULL || elem2 == NULL || elem1 == elem2)
-   {
+   if (elem1 == NULL || elem2 == NULL || elem1 == elem2) {
       return FALHA;
    }
 
-   ElemNum *ant1 = elem1->ant;
-   ElemNum *prox1 = elem1->prox;
-   ElemNum *ant2 = elem2->ant;
-   ElemNum *prox2 = elem2->prox;
+   ElemNum *ant1 = elem1 -> ant;
+   ElemNum *prox1 = elem1 -> prox;
+   ElemNum *ant2 = elem2 -> ant;
+   ElemNum *prox2 = elem2 -> prox;
 
-   if (prox1 == elem2)
-   {
-      elem1->prox = prox2;
-      elem1->ant = elem2;
-      elem2->prox = elem1;
-      elem2->ant = ant1;
+   if (prox1 == elem2) {
+      elem1 -> prox = prox2;
+      elem1 -> ant = elem2;
+      elem2 -> prox = elem1;
+      elem2 -> ant = ant1;
 
-      if (ant1 != NULL)
-      {
-         ant1->prox = elem2;
+      if (ant1 != NULL) {
+         ant1 -> prox = elem2;
       }
-      if (prox2 != NULL)
-      {
-         prox2->ant = elem1;
+      
+      if (prox2 != NULL) {
+         prox2 -> ant = elem1;
       }
-   }
-   else if (prox2 == elem1)
-   {
-      elem2->prox = prox1;
-      elem2->ant = elem1;
-      elem1->prox = elem2;
-      elem1->ant = ant2;
 
-      if (ant2 != NULL)
-      {
-         ant2->prox = elem1;
+   } else if (prox2 == elem1) {
+      elem2 -> prox = prox1;
+      elem2 -> ant = elem1;
+      elem1 -> prox = elem2;
+      elem1 -> ant = ant2;
+
+      if (ant2 != NULL) {
+         ant2 -> prox = elem1;
+      } if (prox1 != NULL) {
+         prox1 -> ant = elem2;
       }
-      if (prox1 != NULL)
-      {
-         prox1->ant = elem2;
-      }
-   }
-   else
-   {
+   } else {
       elem1->prox = prox2;
       elem1->ant = ant2;
       elem2->prox = prox1;
       elem2->ant = ant1;
 
-      if (ant1 != NULL)
-      {
+      if (ant1 != NULL) {
          ant1->prox = elem2;
       }
-      if (prox1 != NULL)
-      {
+
+      if (prox1 != NULL) {
          prox1->ant = elem2;
       }
-      if (ant2 != NULL)
-      {
+
+      if (ant2 != NULL) {
          ant2->prox = elem1;
       }
-      if (prox2 != NULL)
-      {
+
+      if (prox2 != NULL) {
          prox2->ant = elem1;
       }
    }
 
-   if (lista->inicio == elem1)
-   {
+   if (lista->inicio == elem1) {
       lista->inicio = elem2;
-   }
-   else if (lista->inicio == elem2)
-   {
+   } else if (lista->inicio == elem2) {
       lista->inicio = elem1;
    }
 
-   if (lista->final == elem1)
-   {
+   if (lista->final == elem1) {
       lista->final = elem2;
-   }
-   else if (lista->final == elem2)
-   {
+   } else if (lista->final == elem2) {
       lista->final = elem1;
    }
 
@@ -220,27 +204,21 @@ int selectionSortCresc(ListaNumeros *lista) {
       return INVALIDO;
 
    int trocasRealizadas = 0;
-   long int contIter = 0;
 
-   ElemNum *i = lista->inicio;
+   ElemNum *i = lista -> inicio;
 
-   while (i != NULL)
-   {
+   while (i != NULL) {
       ElemNum *menor = i;
-      ElemNum *j = i->prox;
+      ElemNum *j = i -> prox;
 
-      while (j != NULL)
-      {
-         if (j->dado < menor->dado)
-         {
+      while (j != NULL) {
+         if (j -> dado < menor -> dado) {
             menor = j;
          }
          j = j->prox;
-         contIter++;
       }
 
-      if (menor != i)
-      {
+      if (menor != i) {
          trocaElementosNum(lista, i, menor);
          ElemNum *temp = i;
          i = menor;
@@ -249,10 +227,8 @@ int selectionSortCresc(ListaNumeros *lista) {
       }
 
       i = i->prox;
-      contIter++;
    }
 
-   printf("A LISTA FOI PERCORRIDA %ld VEZES\n", contIter);
    return trocasRealizadas;
 }
 
@@ -264,7 +240,6 @@ int selectionSortDecresc(ListaNumeros *lista)
       return FALHA;
 
    int trocasRealizadas = 0;
-   long int contIter = 0;
    ElemNum *i = lista->inicio;
 
    while (i != NULL)
@@ -279,7 +254,6 @@ int selectionSortDecresc(ListaNumeros *lista)
             maior = j;
          }
          j = j->prox;
-         contIter++;
       }
 
       if (maior != i)
@@ -292,10 +266,8 @@ int selectionSortDecresc(ListaNumeros *lista)
       }
 
       i = i->prox;
-      contIter++;
    }
 
-   printf("A LISTA FOI PERCORRIDA %ld VEZES\n", contIter);
 
    return trocasRealizadas;
 }

@@ -145,7 +145,7 @@ int imprimeListaNum(ListaNumeros *lista) {
    ElemNum * aux = lista -> inicio;
    int i = 0;
    while (aux != NULL) {
-      printf("Elem %d: %d\n", i, aux -> dado);
+      printf("\033[3mElem %d: %d\033[m\n", i, aux -> dado);
       i++;
       aux = aux -> prox;
    }
