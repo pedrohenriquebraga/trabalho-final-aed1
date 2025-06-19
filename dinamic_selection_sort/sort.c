@@ -308,7 +308,6 @@ int selectionSortLexCresc(ListaStrings *lista)
       return INVALIDO;
 
    int trocasRealizadas = 0;
-   long int contIter = 0;
 
    ElemStr *i = lista->inicio;
 
@@ -322,7 +321,6 @@ int selectionSortLexCresc(ListaStrings *lista)
             menor = j;
          }
          j = j->prox;
-         contIter++;
       }
 
       if (menor != i)
@@ -335,10 +333,8 @@ int selectionSortLexCresc(ListaStrings *lista)
       }
 
       i = i->prox;
-      contIter++;
    }
 
-   printf("A LISTA FOI PERCORRIDA %ld VEZES\n", contIter);
    return trocasRealizadas;
 }
 
@@ -350,7 +346,6 @@ int selectionSortLexDecresc(ListaStrings *lista)
       return INVALIDO;
 
    int trocasRealizadas = 0;
-   long int contIter = 0;
 
    ElemStr *i = lista->inicio;
 
@@ -360,16 +355,14 @@ int selectionSortLexDecresc(ListaStrings *lista)
       ElemStr *j = i->prox;
 
       while (j != NULL) {
-         if (comparaPalavras(j -> dado, maior -> dado)== 0) {
+         if (comparaPalavras(j -> dado, maior -> dado) == 0) {
             maior = j;
          }
-         j = j->prox;
-         contIter++;
+         j = j -> prox;
       }
 
-      if (maior != i)
-      {
-         trocaElementosStr(lista, i, maior);
+      if (maior != i) {
+         trocaElementosStr(lista, maior, i);
          ElemStr *temp = i;
          i = maior;
          maior = temp;
@@ -377,9 +370,7 @@ int selectionSortLexDecresc(ListaStrings *lista)
       }
 
       i = i->prox;
-      contIter++;
    }
 
-   printf("A LISTA FOI PERCORRIDA %ld VEZES\n", contIter);
    return trocasRealizadas;
 }
